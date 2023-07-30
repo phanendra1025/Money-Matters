@@ -6,11 +6,11 @@ import './index.css'
 class LastTransactionItem extends Component {
   render() {
     const {eachTransaction} = this.props
+    console.log(eachTransaction)
     const {type, transactionName, category, date, amount} = eachTransaction
     const dateDetails = format(new Date(date), 'd MMM, h:m aa')
     const amountText = type === 'credit' ? `+$${amount}` : `-$${amount}`
     const amountTextClass = type === 'credit' ? 'credit-amount' : 'debit-amount'
-    console.log(dateDetails)
     return (
       <li className="transaction-item">
         <div className="transaction-detail-container">

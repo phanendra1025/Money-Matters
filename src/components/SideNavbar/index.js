@@ -1,11 +1,38 @@
 import {Component} from 'react'
-import {AiFillHome} from 'react-icons/ai'
-import {BsPersonFill} from 'react-icons/bs'
-import {withRouter, Link} from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 import {FiLogOut} from 'react-icons/fi'
 import './index.css'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
+import SideNavbarOptionButton from '../SideNavbarOptionButton'
+import MoneyMattersContext from '../../Context/MoneyMattersContext'
+
+// const sideNavBarOptionsList = [
+//   {
+//     optionId: '1',
+//     displayText: 'Home',
+//     iconUrl:
+//       'https://res.cloudinary.com/dytmw4swo/image/upload/v1690706817/MONEYMATTERS/home_2_1_yoafgv.jpg',
+//     activeIconUrl:
+//       'https://res.cloudinary.com/dytmw4swo/image/upload/v1690706792/MONEYMATTERS/home_2_gyxdru.jpg',
+//   },
+//   {
+//     optionId: '2',
+//     displayText: 'Transactions',
+//     iconUrl:
+//       'https://res.cloudinary.com/dytmw4swo/image/upload/v1690707053/MONEYMATTERS/transfer_1_n9ah5j.jpg',
+//     activeIconUrl:
+//       'https://res.cloudinary.com/dytmw4swo/image/upload/v1690707070/MONEYMATTERS/transfer_1_1_xpvymn.jpg',
+//   },
+//   {
+//     optionId: '3',
+//     displayText: 'Profile',
+//     iconUrl:
+//       'https://res.cloudinary.com/dytmw4swo/image/upload/v1690707195/MONEYMATTERS/user_3_1_duwqwf.jpg',
+//     activeIconUrl:
+//       'https://res.cloudinary.com/dytmw4swo/image/upload/v1690707171/MONEYMATTERS/user_3_1_1_chrofz.jpg',
+//   },
+// ]
 
 const profileApiConstants = {
   initial: 'INITIAL',
@@ -51,7 +78,6 @@ class SideNavbar extends Component {
   }
 
   logout = () => {
-    console.log('logout')
     Cookies.remove('user_id')
     const {history} = this.props
     history.replace('/login')
@@ -84,7 +110,7 @@ class SideNavbar extends Component {
     </div>
   )
 
-  renderbottomView = () => {
+  renderBottomView = () => {
     const {userDetailsApiStatus} = this.state
     switch (userDetailsApiStatus) {
       case profileApiConstants.success:
@@ -98,54 +124,46 @@ class SideNavbar extends Component {
 
   render() {
     return (
-      <nav className="side-nav-bar-container">
-        <div className="side-nav-bar-top-section">
-          <div className="website-logo-and-name-container">
-            <img
-              className="side-navbar-website-logo"
-              src="https://res.cloudinary.com/dytmw4swo/image/upload/v1690620128/MONEYMATTERS/Group_1_eodscj.png"
-              alt="webiste logo"
-            />
-            <h1 className="website-name">
-              Money <span className="website-span-name"> Matters</span>
-            </h1>
-          </div>
-          <ul className="side-options-container">
-            <Link to="/" className="side-navbar-link-item">
-              <li className="option-item">
-                <button className="options-button" type="button">
-                  <AiFillHome size="25px" color="#5B73A0" />
-                  <p className="option-name">Dashboard</p>
-                </button>
-              </li>
-            </Link>
-
-            <Link to="/transactions" className="side-navbar-link-item">
-              <li className="option-item">
-                <button type="button" className="options-button">
+      <MoneyMattersContext.Consumer>
+        {value => {
+          const {
+            activeOptionId,
+            optionsList,
+            changeSideNavbarActiveOptionId,
+          } = value
+          return (
+            <nav className="side-nav-bar-container">
+              <div className="side-nav-bar-top-section">
+                <div className="website-logo-and-name-container">
                   <img
-                    src="https://res.cloudinary.com/dytmw4swo/image/upload/v1690633980/MONEYMATTERS/transfer_1_nidoci.jpg"
-                    alt="icon"
+                    className="side-navbar-website-logo"
+                    src="https://res.cloudinary.com/dytmw4swo/image/upload/v1690620128/MONEYMATTERS/Group_1_eodscj.png"
+                    alt="webiste logo"
                   />
-                  <p className="option-name">Transactions</p>
-                </button>
-              </li>
-            </Link>
-
-            <Link to="/profile" className="side-navbar-link-item">
-              <li className="option-item">
-                <button type="button" className="options-button">
-                  <BsPersonFill color="#5B73A0" size="25px" />
-                  <p className="option-name">Profile</p>
-                </button>
-              </li>
-            </Link>
-          </ul>
-        </div>
-        <div className="side-navbar-bottom-section">
-          {this.renderbottomView()}
-        </div>
-      </nav>
+                  <h1 className="website-name">
+                    Money <span className="website-span-name"> Matters</span>
+                  </h1>
+                </div>
+                <ul className="side-options-container">
+                  {optionsList.map(eachOption => (
+                    <SideNavbarOptionButton
+                      optionDetails={eachOption}
+                      key={eachOption.optionId}
+                      isActive={activeOptionId === eachOption.optionId}
+                      changeSideNavbarActiveOptionId={
+                        changeSideNavbarActiveOptionId
+                      }
+                    />
+                  ))}
+                </ul>
+              </div>
+              <div className="side-navbar-bottom-section">
+                {this.renderBottomView()}
+              </div>
+            </nav>
+          )
+        }}
+      </MoneyMattersContext.Consumer>
     )
   }
 }

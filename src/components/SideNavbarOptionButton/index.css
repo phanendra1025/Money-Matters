@@ -1,0 +1,42 @@
+.side-navbar-option-item {
+  display: flex;
+  width: 189px;
+  height: 60px;
+  justify-content: center;
+  align-items: center;
+  gap: 38px;
+  flex-shrink: 0;
+  padding-left: 38px;
+}
+.active-side-navbar-option-item {
+  border: 4px solid #2d60ff;
+  border-top-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 0px;
+}
+.side-navbar-option-button {
+  background-color: #ffffff;
+  border-width: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.side-navbar-option-name {
+  color: #505887;
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  width: 94px;
+  text-align: left;
+}
+.active-side-navbar-option-name {
+  color: #2d60ff;
+}
+.icon-images {
+  width: 25px;
+  height: 25px;
+  flex-shrink: 0;
+}
