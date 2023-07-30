@@ -11,17 +11,17 @@ const APIConstants = {
   inProcess: 'IN_PROCESS',
 }
 
-class AllTransactions extends Component {
+class DebitTransactions extends Component {
   state = {
-    allTransactionsData: [],
+    debitTransactionsData: [],
     transactionsApiStatus: APIConstants.initial,
   }
 
   componentDidMount() {
-    this.getTheAllTransactions()
+    this.getTheDebitTransactions()
   }
 
-  getTheAllTransactions = async () => {
+  getTheDebitTransactions = async () => {
     this.setState({transactionsApiStatus: APIConstants.inProcess})
     const userId = Cookies.get('user_id')
     const options = {
@@ -49,11 +49,13 @@ class AllTransactions extends Component {
         type: eachTransaction.type,
         userId: eachTransaction.user_id,
       }))
+      const debitTransactions = updatedAllTransactions.filter(
+        eachTransaction => eachTransaction.type === 'debit',
+      )
       this.setState({
-        allTransactionsData: updatedAllTransactions,
+        debitTransactionsData: debitTransactions,
         transactionsApiStatus: APIConstants.success,
       })
-      console.log(updatedAllTransactions)
     }
   }
 
@@ -63,8 +65,8 @@ class AllTransactions extends Component {
     </div>
   )
 
-  renderALlTransactionSuccessView = () => {
-    const {allTransactionsData} = this.state
+  renderDebitTransactionsSuccessView = () => {
+    const {debitTransactionsData} = this.state
     return (
       <div className="all-transactions-card">
         <div className="all-transaction-table-headings-container">
@@ -74,7 +76,7 @@ class AllTransactions extends Component {
           <p className="transactions-table-headings amount">Amount</p>
         </div>
         <ul className="all-transaction-list-container">
-          {allTransactionsData.map(eachTransactionDetails => (
+          {debitTransactionsData.map(eachTransactionDetails => (
             <TransactionItem
               details={eachTransactionDetails}
               key={eachTransactionDetails.id}
@@ -85,11 +87,11 @@ class AllTransactions extends Component {
     )
   }
 
-  renderTransactionsViews = () => {
+  renderDebitTransactionsViews = () => {
     const {transactionsApiStatus} = this.state
     switch (transactionsApiStatus) {
       case APIConstants.success:
-        return this.renderALlTransactionSuccessView()
+        return this.renderDebitTransactionsSuccessView()
       case APIConstants.inProcess:
         return this.renderLoadingView()
       default:
@@ -98,8 +100,8 @@ class AllTransactions extends Component {
   }
 
   render() {
-    return <div>{this.renderTransactionsViews()}</div>
+    return <div>{this.renderDebitTransactionsViews()}</div>
   }
 }
 
-export default AllTransactions
+export default DebitTransactions

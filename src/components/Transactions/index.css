@@ -1,6 +1,7 @@
 .transactions-container {
   width: 100%;
   background: #f5f7fa;
+  overflow-y: auto;
 }
 .transaction-header {
   display: flex;
@@ -30,4 +31,5 @@
   background-color: #f5f7fa;
   min-height: 80vh;
   padding: 30px;
+  overflow-y: auto;
 }

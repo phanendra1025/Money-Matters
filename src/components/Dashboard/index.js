@@ -6,11 +6,14 @@ import MoneyMatterContext from '../../Context/MoneyMattersContext'
 
 import Transaction from '../Transactions'
 import Accounts from '../Accounts'
+import Profile from '../Profile'
 
 class Dashboard extends Component {
   renderAccounts = () => <Accounts />
 
   renderTransactions = () => <Transaction />
+
+  renderProfile = () => <Profile />
 
   renderAllViews = id => {
     switch (id) {
@@ -18,6 +21,8 @@ class Dashboard extends Component {
         return this.renderAccounts()
       case 'TRANSACTIONS':
         return this.renderTransactions()
+      case 'PROFILE':
+        return this.renderProfile()
       default:
         return null
     }

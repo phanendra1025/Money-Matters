@@ -1,0 +1,22 @@
+.profile-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.profile-header-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 24px 40px;
+  border-bottom: 1px solid #e2e2e2;
+}
+.profile-heading {
+  margin: 0px;
+  color: #343c6a;
+  font-family: Inter;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}

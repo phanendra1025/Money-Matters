@@ -3,6 +3,8 @@ import {Component} from 'react'
 import './index.css'
 import TransactionOptionButton from '../TransactionOptionButton'
 import AllTransactions from '../AllTransactions'
+import CreditTransactions from '../CreditTransactions'
+import DebitTransactions from '../DebitTransactions'
 
 const transactionHeaderOptionsList = [
   {
@@ -31,9 +33,9 @@ class Transaction extends Component {
 
   renderAllTransactions = () => <AllTransactions />
 
-  renderCreditTransactions = () => <div>credit transactions</div>
+  renderCreditTransactions = () => <CreditTransactions />
 
-  renderDebitTransactions = () => <div>Debit Transactions</div>
+  renderDebitTransactions = () => <DebitTransactions />
 
   renderAllTransactionViews = () => {
     const {activeTransactionOptionId} = this.state
@@ -41,9 +43,9 @@ class Transaction extends Component {
       case transactionHeaderOptionsList[0].optionId:
         return this.renderAllTransactions()
       case transactionHeaderOptionsList[1].optionId:
-        return this.renderCreditTransactions()
-      case transactionHeaderOptionsList[2].optionId:
         return this.renderDebitTransactions()
+      case transactionHeaderOptionsList[2].optionId:
+        return this.renderCreditTransactions()
       default:
         return null
     }
