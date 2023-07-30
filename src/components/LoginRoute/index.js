@@ -19,7 +19,7 @@ class LoginRoute extends Component {
   }
 
   onSubmitSuccess = id => {
-    Cookies.set('jwt_token', id, {expires: 30})
+    Cookies.set('user_id', id, {expires: 30})
     const {history} = this.props
     history.replace('/')
   }
@@ -53,8 +53,8 @@ class LoginRoute extends Component {
 
   render() {
     const {email, password, errorMessage} = this.state
-    const jwtToken = Cookies.get('jwt_token')
-    if (jwtToken !== undefined) {
+    const userId = Cookies.get('user_id')
+    if (userId !== undefined) {
       return <Redirect to="/" />
     }
     return (

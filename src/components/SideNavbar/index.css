@@ -3,10 +3,13 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  width: 250px;
+  width: 270px;
   height: 100vh;
   border: 1px solid #e2e2e2;
   background-color: #ffffff;
+}
+.side-navbar-link-item {
+  text-decoration: none;
 }
 .side-nav-bar-top-section {
   display: flex;
@@ -28,7 +31,7 @@
 .website-name {
   color: #f89a23;
   font-family: 'Poppins';
-  font-size: 19.66px;
+  font-size: 16px;
   font-style: normal;
   font-weight: bold;
   line-height: normal;
@@ -37,7 +40,7 @@
 .website-span-name {
   color: #02969c;
   font-family: 'Poppins';
-  font-size: 19.66px;
+  font-size: 16px;
   font-style: normal;
   line-height: normal;
 }
@@ -63,6 +66,21 @@
 border-top-width: 0px;
 border-right-width: 0px;
 border-bottom-width: 0px; */
+}
+.active-option-item {
+  display: flex;
+  width: 189px;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+  gap: 38px;
+  flex-shrink: 0;
+  list-style: none;
+  padding-left: 28px;
+  border: 5px solid #2d60ff;
+  border-top-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 0px;
 }
 .option-name {
   color: #505887;
@@ -146,5 +164,14 @@ border-bottom-width: 0px; */
 .logout-button {
   background-color: transparent;
   border-width: 0px;
+  cursor: pointer;
+}
+.options-button {
+  background-color: transparent;
+  border-width: 0px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
   cursor: pointer;
 }

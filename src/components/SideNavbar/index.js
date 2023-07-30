@@ -1,7 +1,7 @@
 import {Component} from 'react'
 import {AiFillHome} from 'react-icons/ai'
 import {BsPersonFill} from 'react-icons/bs'
-import {withRouter} from 'react-router-dom'
+import {withRouter, Link} from 'react-router-dom'
 import {FiLogOut} from 'react-icons/fi'
 import './index.css'
 import Cookies from 'js-cookie'
@@ -26,7 +26,7 @@ class SideNavbar extends Component {
 
   getTheUserDetails = async () => {
     this.setState({userDetailsApiStatus: profileApiConstants.inProcess})
-    const id = Cookies.get('jwt_token')
+    const id = Cookies.get('user_id')
     const options = {
       method: 'GET',
       headers: {
@@ -52,7 +52,7 @@ class SideNavbar extends Component {
 
   logout = () => {
     console.log('logout')
-    Cookies.remove('jwt_token')
+    Cookies.remove('user_id')
     const {history} = this.props
     history.replace('/login')
   }
@@ -60,7 +60,6 @@ class SideNavbar extends Component {
   renderSuccessUserDetailsView = () => {
     const {userDetails} = this.state
     const {name, email} = userDetails
-    console.log(userDetails)
     return (
       <div className="details-container">
         <img
@@ -112,21 +111,35 @@ class SideNavbar extends Component {
             </h1>
           </div>
           <ul className="side-options-container">
-            <li className="option-item">
-              <AiFillHome size="25px" color="#5B73A0" />
-              <p className="option-name">Dashboard</p>
-            </li>
-            <li className="option-item">
-              <img
-                src="https://res.cloudinary.com/dytmw4swo/image/upload/v1690633980/MONEYMATTERS/transfer_1_nidoci.jpg"
-                alt="icon"
-              />
-              <p className="option-name">Transcations</p>
-            </li>
-            <li className="option-item">
-              <BsPersonFill color="#5B73A0" size="25px" />
-              <p className="option-name">Profile</p>
-            </li>
+            <Link to="/" className="side-navbar-link-item">
+              <li className="option-item">
+                <button className="options-button" type="button">
+                  <AiFillHome size="25px" color="#5B73A0" />
+                  <p className="option-name">Dashboard</p>
+                </button>
+              </li>
+            </Link>
+
+            <Link to="/transactions" className="side-navbar-link-item">
+              <li className="option-item">
+                <button type="button" className="options-button">
+                  <img
+                    src="https://res.cloudinary.com/dytmw4swo/image/upload/v1690633980/MONEYMATTERS/transfer_1_nidoci.jpg"
+                    alt="icon"
+                  />
+                  <p className="option-name">Transactions</p>
+                </button>
+              </li>
+            </Link>
+
+            <Link to="/profile" className="side-navbar-link-item">
+              <li className="option-item">
+                <button type="button" className="options-button">
+                  <BsPersonFill color="#5B73A0" size="25px" />
+                  <p className="option-name">Profile</p>
+                </button>
+              </li>
+            </Link>
           </ul>
         </div>
         <div className="side-navbar-bottom-section">
