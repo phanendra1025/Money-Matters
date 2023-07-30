@@ -6,14 +6,12 @@
   align-items: center;
   gap: 38px;
   flex-shrink: 0;
-  padding-left: 38px;
 }
-.active-side-navbar-option-item {
-  border: 4px solid #2d60ff;
+/* .active-side-navbar-option-item {
   border-top-width: 0px;
   border-right-width: 0px;
   border-bottom-width: 0px;
-}
+} */
 .side-navbar-option-button {
   background-color: #ffffff;
   border-width: 0px;
@@ -21,6 +19,12 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
+
+  padding-left: 38px;
+}
+.active-navbar-option-button {
+  border-left: 4px solid #2d60ff;
+  padding-left: 34px;
 }
 .side-navbar-option-name {
   color: #505887;

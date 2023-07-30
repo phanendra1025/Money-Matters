@@ -98,7 +98,7 @@ class SideNavbar extends Component {
           <p className="user-email">{email}</p>
         </div>
         <button type="button" onClick={this.logout} className="logout-button">
-          <FiLogOut size="20px" className="logout-icon" color="#718EBF" />
+          <FiLogOut size="18px" className="logout-icon" color="#718EBF" />
         </button>
       </div>
     )

@@ -114,8 +114,8 @@ border-bottom-width: 0px; */
 }
 .side-navbar-profile-image {
   display: flex;
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -141,7 +141,7 @@ border-bottom-width: 0px; */
 
   /* Text sm / Semibold */
   font-family: Inter;
-  font-size: 14px;
+  font-size: 13px;
   font-style: normal;
   font-weight: 600;
   line-height: 20px; /* 142.857% */
@@ -152,7 +152,7 @@ border-bottom-width: 0px; */
 .user-email {
   color: #718ebf;
   font-family: Inter;
-  font-size: 14px;
+  font-size: 13px;
   font-style: normal;
   font-weight: 400;
   line-height: 20px; /* 142.857% */
@@ -165,6 +165,7 @@ border-bottom-width: 0px; */
   background-color: transparent;
   border-width: 0px;
   cursor: pointer;
+  align-items: flex-start;
 }
 .options-button {
   background-color: transparent;

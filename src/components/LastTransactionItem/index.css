@@ -38,6 +38,7 @@ li:nth-last-child(1) {
   margin-bottom: 17px;
   margin-left: 80px;
   text-transform: capitalize;
+  width: 130px;
 }
 .transaction-date-details {
   color: #718ebf;
@@ -49,7 +50,8 @@ li:nth-last-child(1) {
   margin: 0px;
   margin-top: 17px;
   margin-bottom: 17px;
-  margin-left: 96px;
+  margin-left: 100px;
+  width: 131px;
 }
 .credit-amount {
   color: #16dbaa;
