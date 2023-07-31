@@ -2,6 +2,7 @@ import {Component} from 'react'
 import Cookies from 'js-cookie'
 import {Redirect} from 'react-router-dom'
 import Loader from 'react-loader-spinner'
+import MoneyMattersContext from '../../Context/MoneyMattersContext'
 import './index.css'
 
 class LoginRoute extends Component {

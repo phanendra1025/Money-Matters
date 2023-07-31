@@ -53,7 +53,6 @@ class AllTransactions extends Component {
         allTransactionsData: updatedAllTransactions,
         transactionsApiStatus: APIConstants.success,
       })
-      console.log(updatedAllTransactions)
     }
   }
 

@@ -1,8 +1,15 @@
+import Cookies from 'js-cookie'
 import './index.css'
 
 const SideNavbarOptionButton = props => {
   const {optionDetails, isActive, changeSideNavbarActiveOptionId} = props
-  const {optionId, displayText, iconUrl, activeIconUrl} = optionDetails
+  const userId = Cookies.get('user_id')
+  console.log(userId)
+  const {optionId, iconUrl, activeIconUrl} = optionDetails
+  let {displayText} = optionDetails
+  if (optionId === 'TRANSACTIONS') {
+    displayText = userId === '3' ? 'All Transactions' : 'Your Transactions'
+  }
   const iconSrc = isActive ? activeIconUrl : iconUrl
   const textClass = isActive ? 'active-side-navbar-option-name' : ''
   const buttonClass = isActive ? 'active-navbar-option-button' : ''

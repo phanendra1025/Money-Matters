@@ -29,12 +29,13 @@
 .side-navbar-option-name {
   color: #505887;
   font-family: Inter;
-  font-size: 18px;
+  font-size: 15px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  width: 94px;
+  width: 120px;
   text-align: left;
+  margin-left: 12px;
 }
 .active-side-navbar-option-name {
   color: #2d60ff;

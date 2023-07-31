@@ -8,33 +8,6 @@ import SideNavbarOptionButton from '../SideNavbarOptionButton'
 import MoneyMattersContext from '../../Context/MoneyMattersContext'
 import LogoutPopup from '../LogoutPopup'
 
-// const sideNavBarOptionsList = [
-//   {
-//     optionId: '1',
-//     displayText: 'Home',
-//     iconUrl:
-//       'https://res.cloudinary.com/dytmw4swo/image/upload/v1690706817/MONEYMATTERS/home_2_1_yoafgv.jpg',
-//     activeIconUrl:
-//       'https://res.cloudinary.com/dytmw4swo/image/upload/v1690706792/MONEYMATTERS/home_2_gyxdru.jpg',
-//   },
-//   {
-//     optionId: '2',
-//     displayText: 'Transactions',
-//     iconUrl:
-//       'https://res.cloudinary.com/dytmw4swo/image/upload/v1690707053/MONEYMATTERS/transfer_1_n9ah5j.jpg',
-//     activeIconUrl:
-//       'https://res.cloudinary.com/dytmw4swo/image/upload/v1690707070/MONEYMATTERS/transfer_1_1_xpvymn.jpg',
-//   },
-//   {
-//     optionId: '3',
-//     displayText: 'Profile',
-//     iconUrl:
-//       'https://res.cloudinary.com/dytmw4swo/image/upload/v1690707195/MONEYMATTERS/user_3_1_duwqwf.jpg',
-//     activeIconUrl:
-//       'https://res.cloudinary.com/dytmw4swo/image/upload/v1690707171/MONEYMATTERS/user_3_1_1_chrofz.jpg',
-//   },
-// ]
-
 const profileApiConstants = {
   initial: 'INITIAL',
   success: 'SUCCESS',
@@ -77,15 +50,6 @@ class SideNavbar extends Component {
       })
     }
   }
-
-  //   logout = () => {
-  //     console.log('method called')
-  //     return
-  //   }
-
-  // Cookies.remove('user_id')
-  // const {history} = this.props
-  // history.replace('/login')
 
   renderSuccessUserDetailsView = () => {
     const {userDetails} = this.state
