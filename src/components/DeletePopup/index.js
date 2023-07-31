@@ -2,11 +2,37 @@ import {Component} from 'react'
 import Popup from 'reactjs-popup'
 // import {FiLogOut} from 'react-icons/fi'
 import {GrClose} from 'react-icons/gr'
-// import Cookies from 'js-cookie'
+import Cookies from 'js-cookie'
 // import {withRouter} from 'react-router-dom'
+
 import './index.css'
 
 class DeletePopup extends Component {
+  delete = async () => {
+    const {itemId} = this.props
+    const userId = Cookies.get('user_id')
+    const itemsId = {
+      id: itemId,
+    }
+    const options = {
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json',
+        'x-hasura-admin-secret':
+          'g08A3qQy00y8yFDq3y6N1ZQnhOPOa4msdie5EtKS1hFStar01JzPKrtKEzYY2BtF',
+        'x-hasura-role': 'user',
+        'x-hasura-user-id': `${userId}`,
+      },
+      body: JSON.stringify(itemsId),
+    }
+    const response = await fetch(
+      'https://bursting-gelding-24.hasura.app/api/rest/delete-transaction',
+      options,
+    )
+    console.log(response.ok)
+    window.location.reload(false)
+  }
+
   render() {
     return (
       <Popup
@@ -45,7 +71,7 @@ class DeletePopup extends Component {
                 <div className="delete-popup-buttons-container">
                   <button
                     className="yes-delete-button"
-                    onClick={this.logout}
+                    onClick={this.delete}
                     type="button"
                   >
                     Yes, Delete

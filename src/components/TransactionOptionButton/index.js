@@ -3,7 +3,6 @@ import './index.css'
 const TransactionOptionButton = props => {
   const {details, isActive, changeTheActiveTransactionOptionId} = props
   const {displayText, optionId} = details
-  console.log(optionId)
   const optionClassName = isActive
     ? 'active-transaction-option-button'
     : 'transaction-option-button'

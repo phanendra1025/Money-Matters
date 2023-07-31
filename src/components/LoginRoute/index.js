@@ -1,6 +1,7 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
 import {Redirect} from 'react-router-dom'
+import Loader from 'react-loader-spinner'
 import './index.css'
 
 class LoginRoute extends Component {
@@ -8,6 +9,7 @@ class LoginRoute extends Component {
     email: '',
     password: '',
     errorMessage: '',
+    isLoading: false,
   }
 
   onChangeEmail = event => {
@@ -27,37 +29,52 @@ class LoginRoute extends Component {
   submitTheForm = async event => {
     event.preventDefault()
     const {email, password} = this.state
-    const userDetails = {
-      email,
-      password,
-    }
-    const options = {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-        'x-hasura-admin-secret':
-          'g08A3qQy00y8yFDq3y6N1ZQnhOPOa4msdie5EtKS1hFStar01JzPKrtKEzYY2BtF',
-      },
-      body: JSON.stringify(userDetails),
-    }
-    const response = await fetch(
-      `https://bursting-gelding-24.hasura.app/api/rest/get-user-id`,
-      options,
-    )
-    const data = await response.json()
-    if (response.ok === true) {
-      const userData = {
-        getUserId: data.get_user_id,
+    this.setState({isLoading: true, errorMessage: ''})
+    if (email.endsWith('@gmail.com')) {
+      const userDetails = {
+        email,
+        password,
       }
-      const userId = userData.getUserId[0].id
-      this.onSubmitSuccess(userId)
+      const options = {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+          'x-hasura-admin-secret':
+            'g08A3qQy00y8yFDq3y6N1ZQnhOPOa4msdie5EtKS1hFStar01JzPKrtKEzYY2BtF',
+        },
+        body: JSON.stringify(userDetails),
+      }
+      const response = await fetch(
+        `https://bursting-gelding-24.hasura.app/api/rest/get-user-id`,
+        options,
+      )
+      const data = await response.json()
+      console.log(response.ok)
+      if (response.ok === true) {
+        const userData = {
+          getUserId: data.get_user_id,
+        }
+        const userId = userData.getUserId[0].id
+        this.onSubmitSuccess(userId)
+      } else {
+        this.setState({
+          errorMessage: 'enter valid Details',
+          email: '',
+          password: '',
+        })
+      }
     } else {
-      this.setState({errorMessage: 'enter valid Details'})
+      this.setState({
+        errorMessage: 'Enter Valid Input',
+        email: '',
+        password: '',
+        isLoading: false,
+      })
     }
   }
 
   render() {
-    const {email, password, errorMessage} = this.state
+    const {email, password, errorMessage, isLoading} = this.state
     const userId = Cookies.get('user_id')
     if (userId !== undefined) {
       return <Redirect to="/" />
@@ -108,7 +125,18 @@ class LoginRoute extends Component {
           </div>
           <p className="login-error-message">{errorMessage}</p>
           <button className="login-button" type="submit">
-            Login
+            {isLoading ? (
+              <div className="login-loading-container">
+                <Loader
+                  type="TailSpin"
+                  color="#ffffff"
+                  height="20"
+                  width="20"
+                />
+              </div>
+            ) : (
+              <p className="login-text">Login</p>
+            )}
           </button>
         </form>
       </div>

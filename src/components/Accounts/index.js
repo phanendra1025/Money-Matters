@@ -26,15 +26,11 @@ class Accounts extends Component {
   }
 
   updateTheTotals = totalsData => {
-    if (totalsData.length === 1) {
-      const {type, sum} = totalsData[0]
-      if (type === 'credit') {
-        console.log('credit')
-        this.setState({creditTotalSum: sum})
-      } else {
-        this.setState({debitTotalSum: sum})
-      }
-    }
+    totalsData.map(eachData =>
+      eachData.type === 'credit'
+        ? this.setState({creditTotalSum: eachData.sum})
+        : this.setState({debitTotalSum: eachData.sum}),
+    )
   }
 
   getTheTotalCreditsAndDebits = async () => {
@@ -59,7 +55,6 @@ class Accounts extends Component {
       const updatedTotalsData = {
         totalsCreditDebitTransactions: data.totals_credit_debit_transactions,
       }
-      console.log('totals', updatedTotalsData)
       this.updateTheTotals(updatedTotalsData.totalsCreditDebitTransactions)
       this.setState({getTotalsApiStatus: APIConstants.success})
     }

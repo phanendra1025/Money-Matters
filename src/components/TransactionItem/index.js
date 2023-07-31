@@ -8,7 +8,7 @@ import DeletePopup from '../DeletePopup'
 
 const TransactionItem = props => {
   const {details} = props
-  const {type, transactionName, category, date, amount} = details
+  const {id, type, transactionName, category, date, amount} = details
   const dateDetails = format(new Date(date), 'd MMM, h:m aa')
   const amountText = type === 'credit' ? `+$${amount}` : `-$${amount}`
   const amountTextClass =
@@ -27,8 +27,8 @@ const TransactionItem = props => {
         <p className="all-transaction-category">{category}</p>
         <p className="all-transaction-date-details">{dateDetails}</p>
         <p className={amountTextClass}>{amountText}</p>
-        <UpdateTransactionPopup />
-        <DeletePopup />
+        <UpdateTransactionPopup details={details} />
+        <DeletePopup itemId={id} />
       </div>
     </li>
   )

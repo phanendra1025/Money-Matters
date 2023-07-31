@@ -27,7 +27,6 @@ class Transaction extends Component {
   }
 
   changeTheActiveTransactionOptionId = id => {
-    console.log(id)
     this.setState({activeTransactionOptionId: id})
   }
 

@@ -21,6 +21,13 @@ class OverviewGraph extends Component {
     this.getTheLast7DaysTransactionsDetails()
   }
 
+  compareByDates = (a, b) => {
+    const data1 = new Date(a.date)
+    const data2 = new Date(b.date)
+    const differenceBetweenDates = data1 - data2
+    return -differenceBetweenDates
+  }
+
   getTheLast7DaysTransactionsDetails = async () => {
     this.setState({apiStatus: APIConstants.inProcess})
     const userId = Cookies.get('user_id')
@@ -45,6 +52,7 @@ class OverviewGraph extends Component {
           data.last_7_days_transactions_credit_debit_totals,
       }
       const {last7DaysTransactionsCreditDebitTotals} = updatedData
+      last7DaysTransactionsCreditDebitTotals.sort(this.compareByDates)
       console.log(last7DaysTransactionsCreditDebitTotals)
       const creditedDetails = last7DaysTransactionsCreditDebitTotals.filter(
         eachData => eachData.type === 'credit',
@@ -78,7 +86,10 @@ class OverviewGraph extends Component {
         <h1 className="overview-graph-heading">Debit & Credit Overview</h1>
         <div className="overview-graph-container">
           <p className="graph-text">
-            {debitedSum} Debited & {creditedSum} Credited in this Week
+            <span className="overview-graph-span-texts">{debitedSum}</span>{' '}
+            Debited &{' '}
+            <span className="overview-graph-span-texts">{creditedSum}</span>{' '}
+            Credited in this Week
           </p>
         </div>
       </div>

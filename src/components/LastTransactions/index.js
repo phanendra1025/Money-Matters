@@ -20,6 +20,13 @@ class LastTransactions extends Component {
     this.getTheLastTransactionDetails()
   }
 
+  compareByDates = (a, b) => {
+    const data1 = new Date(a.date)
+    const data2 = new Date(b.date)
+    const differenceBetweenDates = data1 - data2
+    return -differenceBetweenDates
+  }
+
   getTheLastTransactionDetails = async () => {
     this.setState({getTransactionApiStatus: APIConstants.inProcess})
     const userId = Cookies.get('user_id')
@@ -34,7 +41,7 @@ class LastTransactions extends Component {
       },
     }
     const response = await fetch(
-      'https://bursting-gelding-24.hasura.app/api/rest/all-transactions?limit=3&offset=5',
+      'https://bursting-gelding-24.hasura.app/api/rest/all-transactions?limit=3&offset=0',
       options,
     )
     const data = await response.json()
@@ -53,6 +60,7 @@ class LastTransactions extends Component {
           userId: eachTransaction.user_id,
         }),
       )
+      updateTransactions.sort(this.compareByDates)
       this.setState({
         transactionData: updateTransactions,
         getTransactionApiStatus: APIConstants.success,
