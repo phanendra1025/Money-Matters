@@ -64,6 +64,8 @@ li:nth-last-child(1) {
   margin-left: 101px;
   margin-top: 17px;
   margin-bottom: 17px;
+  width: 100px;
+  text-align: left;
 }
 .debit-amount {
   color: #fe5c73;
@@ -76,6 +78,8 @@ li:nth-last-child(1) {
   margin-left: 101px;
   margin-top: 17px;
   margin-bottom: 17px;
+  width: 100px;
+  text-align: left;
 }
 .edit-button {
   background-color: transparent;

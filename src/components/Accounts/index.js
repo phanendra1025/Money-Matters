@@ -58,7 +58,7 @@ class Accounts extends Component {
       const updatedTotalsData = {
         totalsCreditDebitTransactions: data.totals_credit_debit_transactions,
       }
-      console.log(updatedTotalsData)
+      console.log('totals', updatedTotalsData)
       this.updateTheTotals(updatedTotalsData.totalsCreditDebitTransactions)
       this.setState({getTotalsApiStatus: APIConstants.success})
     }
@@ -68,7 +68,7 @@ class Accounts extends Component {
     const {creditTotalSum, debitTotalSum} = this.state
     return (
       <div className="credit-and-debit-wrapper">
-        <div className="dashboard-money-details-card">
+        <div className="dashboard-money-details-card dashboard-money-details-credit-card">
           <div className="money-details-wrapper">
             <h1 className="credited-money">${creditTotalSum}</h1>
             <p className="transaction-type">Credit</p>

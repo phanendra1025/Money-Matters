@@ -1,11 +1,12 @@
 import {Component} from 'react'
 import {withRouter} from 'react-router-dom'
-import {FiLogOut} from 'react-icons/fi'
+
 import './index.css'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
 import SideNavbarOptionButton from '../SideNavbarOptionButton'
 import MoneyMattersContext from '../../Context/MoneyMattersContext'
+import LogoutPopup from '../LogoutPopup'
 
 // const sideNavBarOptionsList = [
 //   {
@@ -77,11 +78,14 @@ class SideNavbar extends Component {
     }
   }
 
-  logout = () => {
-    Cookies.remove('user_id')
-    const {history} = this.props
-    history.replace('/login')
-  }
+  //   logout = () => {
+  //     console.log('method called')
+  //     return
+  //   }
+
+  // Cookies.remove('user_id')
+  // const {history} = this.props
+  // history.replace('/login')
 
   renderSuccessUserDetailsView = () => {
     const {userDetails} = this.state
@@ -97,9 +101,7 @@ class SideNavbar extends Component {
           <p className="user-name">{name}</p>
           <p className="user-email">{email}</p>
         </div>
-        <button type="button" onClick={this.logout} className="logout-button">
-          <FiLogOut size="18px" className="logout-icon" color="#718EBF" />
-        </button>
+        <LogoutPopup />
       </div>
     )
   }

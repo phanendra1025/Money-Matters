@@ -158,15 +158,7 @@ border-bottom-width: 0px; */
   line-height: 20px; /* 142.857% */
   margin: 0px;
 }
-.logout-icon {
-  align-self: flex-start;
-}
-.logout-button {
-  background-color: transparent;
-  border-width: 0px;
-  cursor: pointer;
-  align-items: flex-start;
-}
+
 .options-button {
   background-color: transparent;
   border-width: 0px;
