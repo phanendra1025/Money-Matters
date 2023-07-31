@@ -2,6 +2,8 @@ import {Component} from 'react'
 import format from 'date-fns/format'
 import {BiUpArrowCircle, BiDownArrowCircle} from 'react-icons/bi'
 import './index.css'
+import DeletePopup from '../DeletePopup'
+import UpdateTransactionPopup from '../UpdateTransactionPopup'
 
 class LastTransactionItem extends Component {
   render() {
@@ -23,20 +25,8 @@ class LastTransactionItem extends Component {
           <p className="transaction-category">{category}</p>
           <p className="transaction-date-details">{dateDetails}</p>
           <p className={amountTextClass}>{amountText}</p>
-          <button type="button" className="edit-button">
-            <img
-              src="https://res.cloudinary.com/dytmw4swo/image/upload/v1690695535/MONEYMATTERS/pencil-02_kjipjl.png"
-              alt="pencil"
-              className="edit-image"
-            />
-          </button>
-          <button type="button" className="delete-button">
-            <img
-              src="https://res.cloudinary.com/dytmw4swo/image/upload/v1690695667/MONEYMATTERS/trash-01_mfx7en.png"
-              alt="delete"
-              className="delete-image"
-            />
-          </button>
+          <UpdateTransactionPopup />
+          <DeletePopup />
         </div>
       </li>
     )

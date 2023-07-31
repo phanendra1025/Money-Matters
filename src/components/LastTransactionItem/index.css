@@ -81,17 +81,7 @@ li:nth-last-child(1) {
   width: 100px;
   text-align: left;
 }
-.edit-button {
-  background-color: transparent;
-  border-width: 0px;
-  cursor: pointer;
-  margin-left: 80px;
-}
-.edit-image {
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-}
+
 .delete-button {
   background-color: transparent;
   border-width: 0px;

@@ -1,10 +1,11 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
-import {BiPlus} from 'react-icons/bi'
+
 import OverviewGraph from '../OverviewGraph'
 import './index.css'
 import LastTransactions from '../LastTransactions'
+import AddTransactionPopup from '../AddTransactionPopup'
 
 const APIConstants = {
   initial: 'INITIAL',
@@ -117,10 +118,7 @@ class Accounts extends Component {
       <div className="dashboard">
         <div className="dashboard-header">
           <h1 className="header-heading">Accounts</h1>
-          <button type="button" className="add-transaction-button">
-            <BiPlus size="20px" color="#ffffff" />
-            Add Transaction
-          </button>
+          <AddTransactionPopup />
         </div>
         <div className="dashboard-section">
           {this.renderCreditAndDebitCards()}

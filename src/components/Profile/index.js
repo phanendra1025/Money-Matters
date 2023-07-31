@@ -1,8 +1,8 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
-import {BiPlus} from 'react-icons/bi'
 import './index.css'
+import AddTransactionPopup from '../AddTransactionPopup'
 
 const userProfileApiConstants = {
   initial: 'INITIAL',
@@ -22,6 +22,9 @@ class Profile extends Component {
   }
 
   getTheProfileDetails = async () => {
+    this.setState({
+      userProfileDetailsApiStatus: userProfileApiConstants.inProcess,
+    })
     const id = Cookies.get('user_id')
     const options = {
       method: 'GET',
@@ -51,7 +54,7 @@ class Profile extends Component {
         presentAddress: fetchedUserProfileData.present_address,
       }
       this.setState({
-        userProfileDetails: data.users[0],
+        userProfileDetails: updatedUserProfileData,
         userProfileDetailsApiStatus: userProfileApiConstants.success,
       })
     }
@@ -234,8 +237,8 @@ class Profile extends Component {
     )
   }
 
-  renderLoadingView = () => (
-    <div className="loader-container">
+  renderProfileLoadingView = () => (
+    <div className="profile-loader-container">
       <Loader type="ThreeDots" color="#2D60FF" height="50" width="50" />
     </div>
   )
@@ -245,8 +248,8 @@ class Profile extends Component {
     switch (userProfileDetailsApiStatus) {
       case userProfileApiConstants.success:
         return this.renderUserProfileSuccessView()
-      case userProfileDetailsApiStatus.inProcess:
-        return this.renderLoadingView()
+      case userProfileApiConstants.inProcess:
+        return this.renderProfileLoadingView()
       default:
         return null
     }
@@ -257,10 +260,7 @@ class Profile extends Component {
       <div className="profile-container">
         <div className="profile-header-section">
           <h1 className="profile-heading">Profile</h1>
-          <button type="button" className="add-transaction-button">
-            <BiPlus size="20px" color="#ffffff" />
-            Add Transaction
-          </button>
+          <AddTransactionPopup />
         </div>
         <div className="profile-section">{this.renderAllProfileViews()}</div>
       </div>

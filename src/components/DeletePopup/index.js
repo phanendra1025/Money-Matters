@@ -1,30 +1,23 @@
 import {Component} from 'react'
-
 import Popup from 'reactjs-popup'
-import {FiLogOut} from 'react-icons/fi'
+// import {FiLogOut} from 'react-icons/fi'
 import {GrClose} from 'react-icons/gr'
-import Cookies from 'js-cookie'
-import {withRouter} from 'react-router-dom'
+// import Cookies from 'js-cookie'
+// import {withRouter} from 'react-router-dom'
 import './index.css'
 
-class LogoutPopup extends Component {
-  logout = () => {
-    Cookies.remove('user_id')
-    const {history} = this.props
-    history.replace('/login')
-  }
-
+class DeletePopup extends Component {
   render() {
     return (
       <Popup
         modalStyle={{borderRadius: '10px', width: '591px'}}
         trigger={
-          <button
-            type="button"
-            onClick={this.toggleFullScreen}
-            className="logout-button"
-          >
-            <FiLogOut size="18px" className="logout-icon" color="#718EBF" />
+          <button type="button" className="delete-button">
+            <img
+              src="https://res.cloudinary.com/dytmw4swo/image/upload/v1690695667/MONEYMATTERS/trash-01_mfx7en.png"
+              alt="delete"
+              className="delete-image"
+            />
           </button>
         }
         overlayStyle={{
@@ -34,41 +27,42 @@ class LogoutPopup extends Component {
         modal
       >
         {close => (
-          <div className="popup-container">
-            <div className="popup-logout-card">
+          <div className="delete-popup-container">
+            <div className="delete-popup-card">
               <img
                 src="https://res.cloudinary.com/dytmw4swo/image/upload/v1690792088/MONEYMATTERS/Group_848_diki3m.png"
                 alt="alert"
-                className="alert-image"
+                className="delete-alert-image"
               />
-              <div className="logout-text-container">
-                <h1 className="logout-popup-heading">
+              <div className="delete-text-container">
+                <h1 className="delete-popup-heading">
                   Are you sure you want to Delete?
                 </h1>
-                <p className="logout-popup-para">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                <p className="delete-popup-para">
+                  This transaction will be deleted immediately. You can’t undo
+                  this action.
                 </p>
-                <div className="logout-popup-buttons-container">
+                <div className="delete-popup-buttons-container">
                   <button
-                    className="yes-logout-button"
+                    className="yes-delete-button"
                     onClick={this.logout}
                     type="button"
                   >
-                    Yes, Logout
+                    Yes, Delete
                   </button>
                   <button
                     type="button"
                     onClick={close}
-                    className="logout-popup-cancel-button"
+                    className="delete-popup-leave-it-button"
                   >
-                    Cancel
+                    No, Leave it
                   </button>
                 </div>
               </div>
               <button
                 onClick={close}
                 type="button"
-                className="popup-close-button"
+                className="delete-popup-close-button"
               >
                 <GrClose size="20px" color="#718EBF" />
               </button>
@@ -80,4 +74,4 @@ class LogoutPopup extends Component {
   }
 }
 
-export default withRouter(LogoutPopup)
+export default DeletePopup

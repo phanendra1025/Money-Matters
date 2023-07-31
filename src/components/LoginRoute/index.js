@@ -27,16 +27,21 @@ class LoginRoute extends Component {
   submitTheForm = async event => {
     event.preventDefault()
     const {email, password} = this.state
+    const userDetails = {
+      email,
+      password,
+    }
     const options = {
-      method: 'GET',
+      method: 'POST',
       headers: {
         'content-type': 'application/json',
         'x-hasura-admin-secret':
           'g08A3qQy00y8yFDq3y6N1ZQnhOPOa4msdie5EtKS1hFStar01JzPKrtKEzYY2BtF',
       },
+      body: JSON.stringify(userDetails),
     }
     const response = await fetch(
-      `https://bursting-gelding-24.hasura.app/api/rest/get-user-id?email=${email}&password=${password}`,
+      `https://bursting-gelding-24.hasura.app/api/rest/get-user-id`,
       options,
     )
     const data = await response.json()
