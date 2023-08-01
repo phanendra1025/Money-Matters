@@ -43,7 +43,7 @@ class LogoutPopup extends Component {
               />
               <div className="logout-text-container">
                 <h1 className="logout-popup-heading">
-                  Are you sure you want to Delete?
+                  Are you sure you want to Logout?
                 </h1>
                 <p className="logout-popup-para">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed

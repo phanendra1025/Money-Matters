@@ -49,7 +49,6 @@ class LoginRoute extends Component {
         options,
       )
       const data = await response.json()
-      console.log(response.ok)
       if (response.ok === true) {
         const userData = {
           getUserId: data.get_user_id,

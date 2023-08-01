@@ -29,7 +29,6 @@ class DeletePopup extends Component {
       'https://bursting-gelding-24.hasura.app/api/rest/delete-transaction',
       options,
     )
-    console.log(response.ok)
     window.location.reload(false)
   }
 

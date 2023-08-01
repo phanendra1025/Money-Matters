@@ -4,7 +4,6 @@ import './index.css'
 const SideNavbarOptionButton = props => {
   const {optionDetails, isActive, changeSideNavbarActiveOptionId} = props
   const userId = Cookies.get('user_id')
-  console.log(userId)
   const {optionId, iconUrl, activeIconUrl} = optionDetails
   let {displayText} = optionDetails
   if (optionId === 'TRANSACTIONS') {

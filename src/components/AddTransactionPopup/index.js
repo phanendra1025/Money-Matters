@@ -39,6 +39,9 @@ class AddTransactionPopup extends Component {
     category: '',
     amount: '',
     date: '',
+    allFieldAreRequiredMessage: false,
+    transactionNameErrorMessage: false,
+    amountErrorMessage: false,
   }
 
   onChangeTransactionName = event => {
@@ -87,8 +90,19 @@ class AddTransactionPopup extends Component {
       amount,
       date,
     } = this.state
-    if (!Number.isNaN(+amount)) {
-      console.log('true')
+    if (transactionName.length > 30) {
+      this.setState({transactionNameErrorMessage: true})
+    } else if (
+      transactionName === '' &&
+      transactionType === '' &&
+      category === '' &&
+      amount === '' &&
+      date === ''
+    ) {
+      this.setState({allFieldAreRequiredMessage: true})
+    } else if (!Number.isNaN(amount) && amount < 0) {
+      this.setState({amountErrorMessage: true})
+    } else {
       const dateValue = this.getTheDateDetails(date)
       const transactionDetails = {
         name: transactionName,
@@ -114,9 +128,6 @@ class AddTransactionPopup extends Component {
         options,
       )
       window.location.reload(false)
-      console.log(response.ok)
-    } else {
-      console.log('false')
     }
   }
 
@@ -127,6 +138,9 @@ class AddTransactionPopup extends Component {
       category,
       amount,
       date,
+      allFieldAreRequiredMessage,
+      transactionNameErrorMessage,
+      amountErrorMessage,
     } = this.state
     return (
       <Popup
@@ -152,7 +166,6 @@ class AddTransactionPopup extends Component {
                     Lorem ipsum dolor sit amet, consectetur{' '}
                   </p>
                 </div>
-
                 <button
                   onClick={close}
                   type="button"
@@ -180,6 +193,11 @@ class AddTransactionPopup extends Component {
                     placeholder="Enter Name"
                     onChange={this.onChangeTransactionName}
                   />
+                  {transactionNameErrorMessage && (
+                    <p className="inputs-error-message">
+                      This field should have a maximum of 30 characters
+                    </p>
+                  )}
                 </div>
                 <div className="add-transactions-inputs-wrapper">
                   <label
@@ -240,6 +258,9 @@ class AddTransactionPopup extends Component {
                     placeholder="Enter Your Amount"
                     onChange={this.onChangeAmount}
                   />
+                  {amountErrorMessage && (
+                    <p className="inputs-error-message">enter valid input*</p>
+                  )}
                 </div>
                 <div className="add-transactions-inputs-wrapper">
                   <label
@@ -257,6 +278,11 @@ class AddTransactionPopup extends Component {
                     onChange={this.onChangeDate}
                   />
                 </div>
+                {allFieldAreRequiredMessage && (
+                  <p className="inputs-error-message">
+                    All fields are required*
+                  </p>
+                )}
                 <button type="submit" className="add-transaction-popup-button">
                   Add Transaction
                 </button>
