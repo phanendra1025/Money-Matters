@@ -1,4 +1,4 @@
-import {Component} from 'react'
+import React from 'react'
 import {Route, Switch} from 'react-router-dom'
 import LoginRoute from './components/LoginRoute'
 import Dashboard from './components/Dashboard'
@@ -34,7 +34,7 @@ const sideNavBarOptionsList = [
   },
 ]
 
-class App extends Component {
+class App extends React.Component {
   state = {
     optionsList: sideNavBarOptionsList,
     activeOptionId: sideNavBarOptionsList[0].optionId,

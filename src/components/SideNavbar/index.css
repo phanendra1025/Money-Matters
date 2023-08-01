@@ -67,7 +67,7 @@ border-top-width: 0px;
 border-right-width: 0px;
 border-bottom-width: 0px; */
 }
-.active-option-item {
+/* .active-option-item {
   display: flex;
   width: 189px;
   height: 50px;
@@ -81,7 +81,7 @@ border-bottom-width: 0px; */
   border-top-width: 0px;
   border-right-width: 0px;
   border-bottom-width: 0px;
-}
+} */
 .option-name {
   color: #505887;
 
