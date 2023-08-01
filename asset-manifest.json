@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/Money-Matters/static/css/main.7a6d0845.chunk.css",
+    "main.js": "/Money-Matters/static/js/main.7ae71c30.chunk.js",
+    "main.js.map": "/Money-Matters/static/js/main.7ae71c30.chunk.js.map",
+    "runtime-main.js": "/Money-Matters/static/js/runtime-main.19b577e0.js",
+    "runtime-main.js.map": "/Money-Matters/static/js/runtime-main.19b577e0.js.map",
+    "static/js/2.f02eaf23.chunk.js": "/Money-Matters/static/js/2.f02eaf23.chunk.js",
+    "static/js/2.f02eaf23.chunk.js.map": "/Money-Matters/static/js/2.f02eaf23.chunk.js.map",
+    "index.html": "/Money-Matters/index.html",
+    "static/css/main.7a6d0845.chunk.css.map": "/Money-Matters/static/css/main.7a6d0845.chunk.css.map",
+    "static/js/2.f02eaf23.chunk.js.LICENSE.txt": "/Money-Matters/static/js/2.f02eaf23.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.19b577e0.js",
+    "static/js/2.f02eaf23.chunk.js",
+    "static/css/main.7a6d0845.chunk.css",
+    "static/js/main.7ae71c30.chunk.js"
+  ]
+}
