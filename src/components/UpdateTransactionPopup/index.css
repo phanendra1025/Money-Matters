@@ -95,6 +95,7 @@
   background-color: #2d60ff;
   color: #fff;
   text-align: center;
+  cursor: pointer;
 
   /* text-sm / leading-5 / font-medium */
   font-family: Inter;
@@ -104,4 +105,9 @@
   line-height: 20px; /* 142.857% */
   border-width: 0px;
   margin-top: 24px;
+}
+.edit-image {
+  margin-left: 85;
+  height: 20px;
+  width: 20px;
 }

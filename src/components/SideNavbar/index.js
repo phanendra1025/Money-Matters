@@ -71,8 +71,8 @@ class SideNavbar extends Component {
   }
 
   renderLoadingView = () => (
-    <div className="loader-container">
-      <Loader type="ThreeDots" color="#2D60FF" height="50" width="50" />
+    <div className="side-nav-bar-profile-loader-container">
+      <Loader type="TailSpin" color="#2D60FF" height="30" width="30" />
     </div>
   )
 

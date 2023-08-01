@@ -1,7 +1,7 @@
 .all-transactions-card {
   background-color: #ffffff;
   width: 100%;
-  min-height: 50vh;
+  min-height: 20vh;
   padding: 16px 30px;
   border-radius: 25px;
 }
@@ -19,7 +19,7 @@
   font-family: Inter;
   font-size: 16px;
   font-style: normal;
-  font-weight: 550;
+  font-weight: 600;
   line-height: normal;
 }
 .category {
@@ -31,7 +31,21 @@
 .amount {
   margin-left: 195px;
 }
+.transaction-heading-user-name {
+  width: 164px;
+  margin-right: 170px;
+}
 .all-transaction-list-container {
   padding: 0px;
-  margin: 0px;
+}
+.transaction-admin-category {
+  margin-left: 114px;
+  width: 72px;
+  margin-right: 96px;
+}
+.admin-amount-transaction {
+  margin-left: 195px;
+}
+.admin-margin-date {
+  margin-left: 96px;
 }

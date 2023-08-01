@@ -3,6 +3,7 @@ import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
 import './index.css'
 import TransactionItem from '../TransactionItem'
+import AddTransactionPopup from '../AddTransactionPopup'
 
 const APIConstants = {
   initial: 'INITIAL',
@@ -19,6 +20,13 @@ class AllTransactions extends Component {
 
   componentDidMount() {
     this.getTheAllTransactions()
+  }
+
+  compareByDates = (a, b) => {
+    const data1 = new Date(a.date)
+    const data2 = new Date(b.date)
+    const differenceBetweenDates = data1 - data2
+    return -differenceBetweenDates
   }
 
   getTheAllTransactions = async () => {
@@ -49,12 +57,33 @@ class AllTransactions extends Component {
         type: eachTransaction.type,
         userId: eachTransaction.user_id,
       }))
+      updatedAllTransactions.sort(this.compareByDates)
       this.setState({
         allTransactionsData: updatedAllTransactions,
         transactionsApiStatus: APIConstants.success,
       })
+    } else {
+      this.setState({transactionsApiStatus: APIConstants.failure})
     }
   }
+
+  renderFailureView = () => (
+    <div className="failure-view-card">
+      <img
+        src="https://res.cloudinary.com/dytmw4swo/image/upload/v1690861891/MONEYMATTERS/Feeling_sorry-cuate_ogigsk.png"
+        alt="error"
+        className="error-image"
+      />
+      <h1 className="error-heading">Something Went Wrong</h1>
+      <button
+        type="button"
+        className="retry-button"
+        onClick={this.getTheTotalCreditsAndDebits}
+      >
+        Retry
+      </button>
+    </div>
+  )
 
   renderLoadingView = () => (
     <div className="credit-debit-loader-container">
@@ -64,14 +93,54 @@ class AllTransactions extends Component {
 
   renderALlTransactionSuccessView = () => {
     const {allTransactionsData} = this.state
+    const userId = Cookies.get('user_id')
+    const isAdmin = userId === '3'
+    if (allTransactionsData.length === 0) {
+      return (
+        <div className="last-transaction-container">
+          <div className="last-three-transaction-container-no-result">
+            <img
+              src="https://res.cloudinary.com/dytmw4swo/image/upload/v1690859828/MONEYMATTERS/No_data-cuate_u47df0.png"
+              alt="no result"
+              className="no-result-image"
+            />
+            <div className="no-result-text-container">
+              <h1 className="no-result-heading">No Transactions Found</h1>
+              <p className="no-result-para">
+                Add transaction to see the All Transaction
+              </p>
+              <AddTransactionPopup />
+            </div>
+          </div>
+        </div>
+      )
+    }
     return (
       <div className="all-transactions-card">
-        <div className="all-transaction-table-headings-container">
-          <p className="transactions-table-headings">Transaction Name</p>
-          <p className="transactions-table-headings category">Category</p>
-          <p className="transactions-table-headings date">Date</p>
-          <p className="transactions-table-headings amount">Amount</p>
-        </div>
+        {isAdmin ? (
+          <div className="all-transaction-table-headings-container">
+            <p className="transactions-table-headings transaction-heading-user-name">
+              User Name
+            </p>
+            <p className="transactions-table-headings">Transaction Name</p>
+            <p className="transactions-table-headings transaction-admin-category">
+              Category
+            </p>
+            <p className="transactions-table-headings admin-margin-date">
+              Date
+            </p>
+            <p className="transactions-table-headings admin-amount-transaction">
+              Amount
+            </p>
+          </div>
+        ) : (
+          <div className="all-transaction-table-headings-container">
+            <p className="transactions-table-headings">Transaction Name</p>
+            <p className="transactions-table-headings category">Category</p>
+            <p className="transactions-table-headings date">Date</p>
+            <p className="transactions-table-headings amount">Amount</p>
+          </div>
+        )}
         <ul className="all-transaction-list-container">
           {allTransactionsData.map(eachTransactionDetails => (
             <TransactionItem
@@ -89,6 +158,8 @@ class AllTransactions extends Component {
     switch (transactionsApiStatus) {
       case APIConstants.success:
         return this.renderALlTransactionSuccessView()
+      case APIConstants.failure:
+        return this.renderFailureView()
       case APIConstants.inProcess:
         return this.renderLoadingView()
       default:

@@ -57,6 +57,10 @@ class Profile extends Component {
         userProfileDetails: updatedUserProfileData,
         userProfileDetailsApiStatus: userProfileApiConstants.success,
       })
+    } else {
+      this.setState({
+        userProfileDetailsApiStatus: userProfileApiConstants.failure,
+      })
     }
   }
 
@@ -243,11 +247,31 @@ class Profile extends Component {
     </div>
   )
 
+  renderFailureView = () => (
+    <div className="failure-view-card">
+      <img
+        src="https://res.cloudinary.com/dytmw4swo/image/upload/v1690861891/MONEYMATTERS/Feeling_sorry-cuate_ogigsk.png"
+        alt="error"
+        className="error-image"
+      />
+      <h1 className="error-heading">Something Went Wrong</h1>
+      <button
+        type="button"
+        className="retry-button"
+        onClick={this.getTheTotalCreditsAndDebits}
+      >
+        Retry
+      </button>
+    </div>
+  )
+
   renderAllProfileViews = () => {
     const {userProfileDetailsApiStatus} = this.state
     switch (userProfileDetailsApiStatus) {
       case userProfileApiConstants.success:
         return this.renderUserProfileSuccessView()
+      case userProfileApiConstants.failure:
+        return this.renderFailureView()
       case userProfileApiConstants.inProcess:
         return this.renderProfileLoadingView()
       default:
@@ -256,11 +280,12 @@ class Profile extends Component {
   }
 
   render() {
+    const userId = Cookies.get('user_id')
     return (
       <div className="profile-container">
         <div className="profile-header-section">
           <h1 className="profile-heading">Profile</h1>
-          <AddTransactionPopup />
+          {userId === '3' ? null : <AddTransactionPopup />}
         </div>
         <div className="profile-section">{this.renderAllProfileViews()}</div>
       </div>

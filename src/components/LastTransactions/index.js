@@ -1,7 +1,9 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
+import AddTransactionPopup from '../AddTransactionPopup'
 import LastTransactionItem from '../LastTransactionItem'
+import './index.css'
 
 const APIConstants = {
   initial: 'INITIAL',
@@ -65,6 +67,8 @@ class LastTransactions extends Component {
         transactionData: updateTransactions,
         getTransactionApiStatus: APIConstants.success,
       })
+    } else {
+      this.setState({getTransactionApiStatus: APIConstants.failure})
     }
   }
 
@@ -74,8 +78,47 @@ class LastTransactions extends Component {
     </div>
   )
 
+  renderFailureView = () => (
+    <div className="failure-view-card">
+      <img
+        src="https://res.cloudinary.com/dytmw4swo/image/upload/v1690861891/MONEYMATTERS/Feeling_sorry-cuate_ogigsk.png"
+        alt="error"
+        className="error-image"
+      />
+      <h1 className="error-heading">Something Went Wrong</h1>
+      <button
+        type="button"
+        className="retry-button"
+        onClick={this.getTheTotalCreditsAndDebits}
+      >
+        Retry
+      </button>
+    </div>
+  )
+
   renderLastTransactionSuccessView = () => {
     const {transactionData} = this.state
+    if (transactionData.length === 0) {
+      return (
+        <div className="last-transaction-container">
+          <h1 className="last-transaction-heading">Last Transaction</h1>
+          <div className="last-three-transaction-container-no-result">
+            <img
+              src="https://res.cloudinary.com/dytmw4swo/image/upload/v1690859828/MONEYMATTERS/No_data-cuate_u47df0.png"
+              alt="no result"
+              className="no-result-image"
+            />
+            <div className="no-result-text-container">
+              <h1 className="no-result-heading">No Transactions Found</h1>
+              <p className="no-result-para">
+                Add transaction to see the last three transactions
+              </p>
+              <AddTransactionPopup />
+            </div>
+          </div>
+        </div>
+      )
+    }
     return (
       <div className="last-transaction-container">
         <h1 className="last-transaction-heading">Last Transaction</h1>
@@ -96,6 +139,8 @@ class LastTransactions extends Component {
     switch (getTransactionApiStatus) {
       case APIConstants.success:
         return this.renderLastTransactionSuccessView()
+      case APIConstants.failure:
+        return this.renderFailureView()
       case APIConstants.inProcess:
         return this.renderLoadingView()
       default:
